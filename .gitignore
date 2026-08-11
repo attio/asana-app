@@ -1,0 +1,16 @@
+node_modules
+.attio
+
+# editor
+.DS_Store
+
+# build
+graphql.d.ts
+dist/
+tsconfig.tsbuildinfo
+
+# claude code local overrides
+.claude/settings.local.json
+
+.env
+.env.local

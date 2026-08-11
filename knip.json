@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "entry": [
+    "src/app.ts",
+    "src/app.settings.ts",
+    "src/**/*.server.ts",
+    "src/**/*.event.ts",
+    "src/**/*.webhook.ts",
+    "src/blocks/**/block.ts",
+    "src/blocks/**/execute.ts",
+    "src/blocks/**/configurator.tsx",
+    "src/app/extensions/**/extension.{ts,tsx}",
+    "src/app/settings/**/*.{ts,tsx}",
+    "src/app/events/**/*.{ts,tsx}",
+    "src/app/webhooks/**/*.{ts,tsx}",
+    "src/app/blocks/**/*.{ts,tsx}"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}"
+  ],
+  "rules": {
+    "files": "error",
+    "exports": "error",
+    "types": "error",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "enumMembers": "error",
+    "namespaceMembers": "error",
+    "duplicates": "off",
+    "dependencies": "off",
+    "devDependencies": "off",
+    "optionalPeerDependencies": "off",
+    "binaries": "off",
+    "catalog": "off",
+    "unlisted": "off",
+    "unresolved": "off"
+  }
+}
