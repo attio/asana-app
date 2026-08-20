@@ -42,11 +42,19 @@ export async function wrapAsana(
         try {
             return complete(await response.json())
         } catch (error) {
-            console.error("[asana] failed to parse response body", error)
+            console.error("[asana] failed to parse response body", {
+                path,
+                method: init.method ?? "GET",
+                error,
+            })
             return errored({code: "UNEXPECTED_ERROR"})
         }
     } catch (error) {
-        console.error("[asana] network error calling Asana API", error)
+        console.error("[asana] network error calling Asana API", {
+            path,
+            method: init.method ?? "GET",
+            error,
+        })
         return errored({code: "UNEXPECTED_ERROR"})
     }
 }

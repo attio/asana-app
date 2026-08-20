@@ -32,7 +32,7 @@ export default Workflows.defineConfigurator(block, (workflowBlock) => {
             <DateInput
                 name="start_on"
                 label="Start date"
-                help="Requires a due date. Start and due dates cannot be the same day."
+                help="If set, a due date is also required and the start date must fall before it."
             />
             <DateInput name="due_on" label="Due date" />
             <ComboboxInput

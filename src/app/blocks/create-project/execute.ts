@@ -3,6 +3,7 @@ import {Workflows} from "attio/server"
 import {asana} from "../../../asana/client"
 import {asanaApiErrorUserMessage} from "../../../asana/error"
 import block from "./block"
+import {validateProjectDates} from "./rules"
 
 function optionalNonEmptyString(value: string | undefined): string | undefined {
     if (value === undefined || value === "") {
@@ -16,20 +17,10 @@ const execute: Workflows.WorkflowBlockExecute<typeof block.configSchema> =
         const dueOn = config.due_on?.value
         const startOn = config.start_on?.value
 
-        if (startOn !== undefined && dueOn === undefined) {
-            return {
-                type: "error",
-                errorMessage: "A due date is required when setting a start date.",
-                retryable: false,
-            }
-        }
+        const datesError = validateProjectDates({startOn, dueOn})
 
-        if (startOn !== undefined && dueOn !== undefined && startOn === dueOn) {
-            return {
-                type: "error",
-                errorMessage: "Start date and due date cannot be the same day.",
-                retryable: false,
-            }
+        if (datesError !== undefined) {
+            return {type: "error", errorMessage: datesError, retryable: false}
         }
 
         const result = await asana.createProject({
